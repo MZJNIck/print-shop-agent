@@ -39,15 +39,11 @@ uv pip install -e ".[graph,dev]"
 | API key / 模型 / 价目路径 / 排版口径 | `config.yaml` | 直接编辑，保存后重跑 |
 | 价格 | `pricing.yaml` | 改 `unit_price`，同时改 `version`（报价单会印版本） |
 
-> 仓库里不含 `config.yaml`（它可能含真实 key，已被 `.gitignore` 排除），但带了模板 `config.template.yaml`。clone 后先复制一份：
+clone 后直接打开 `config.yaml`，把 `deepseek.api_key` 填上即可运行；留空则走离线规则（不调模型）。
 
-```bash
-copy config.template.yaml config.yaml
-```
+> 本地已有真实 key？写进 `config.local.yaml`（不入库，程序自动优先读它），`config.yaml` 保持空模板提交。
 
-再按需改 `api_key` 即可。不复制也能跑（默认配置、离线规则）。
-
-优先级：**命令行 > 环境变量 > config.yaml**。例如 `--api-key sk-...` 覆盖文件里的 key。
+优先级：**命令行 > 环境变量 > config.local.yaml > config.yaml**。例如 `--api-key sk-...` 覆盖文件里的 key。
 
 `config.yaml` 里的 `api_key` 留空也能跑（离线规则）；填了就走 deepseek-flash 双跑。
 
@@ -101,8 +97,8 @@ copy config.template.yaml config.yaml
 ```
 printshop/            源码
 tests/                测试（108 条）
-config.template.yaml  运行配置模板（入库，key 为空）
-config.yaml           本地配置（含你的 key，不入库）
+config.yaml           运行配置（入库；填上 api_key 即可用）
+config.local.yaml     本地覆盖（不入库；放真实 key）
 pricing.yaml          价目表
 logs/                 决策日志（--no-log 可关）
 ```

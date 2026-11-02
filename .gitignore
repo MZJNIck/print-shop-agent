@@ -4,8 +4,7 @@ __pycache__/
 .pytest_cache/
 .idea/
 
-# 本地配置（含真实 api_key），不要提交、不要外传
-config.yaml
+# 本地覆盖配置（放真实 api_key；config.yaml 是入库的空模板）
 config.local.yaml
 
 # 运行时决策日志

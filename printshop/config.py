@@ -12,6 +12,7 @@ from typing import Optional
 import yaml
 
 DEFAULT_CONFIG = Path(__file__).resolve().parent.parent / "config.yaml"
+LOCAL_CONFIG = DEFAULT_CONFIG.with_name("config.local.yaml")
 
 DEFAULT_MODEL = "deepseek-flash"
 DEFAULT_BASE_URL = "https://api.deepseek.com"
@@ -29,7 +30,9 @@ class AppConfig:
 
 
 def load_config(path: Optional[str] = None) -> AppConfig:
-    """读取 config.yaml；文件不存在时返回全默认值（不报错）。"""
+    """读取配置：显式路径 > config.local.yaml > config.yaml；都不存在用默认值。"""
+    if path is None and LOCAL_CONFIG.exists():
+        path = str(LOCAL_CONFIG)
     p = Path(path) if path else DEFAULT_CONFIG
     if not p.exists():
         return AppConfig()
