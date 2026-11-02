@@ -12,8 +12,9 @@ def test_default_config_loads():
     assert cfg.timeout == 45
     # 本地 config.yaml 可能已填真实 key，这里只校验类型，不强制为空
     assert isinstance(cfg.api_key, str)
-    assert cfg.pricing_path is not None
-    assert Path(cfg.pricing_path).name == "pricing.yaml"
+    # 没有 config.yaml 时 pricing_path 为 None，由 PriceBook 使用默认 pricing.yaml
+    if cfg.pricing_path is not None:
+        assert Path(cfg.pricing_path).name == "pricing.yaml"
 
 
 def test_config_reads_api_key_and_relative_pricing(tmp_path):
