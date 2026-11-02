@@ -1,0 +1,20 @@
+# 2026-11-02 调整后的价目（演示"改价只改文件"）
+version: "2026-11-02"
+currency: CNY
+
+items:
+  typeset:
+    label: 排版费
+    basis: 源页面
+    unit_price: "4.00"
+    note: 需要排版的原始页面才收费，同一源页只计一次
+  print:
+    label: 打印费
+    basis: 实际打印页
+    unit_price: "0.60"
+    note: 源页面 × 每页打印份数
+  bind:
+    label: 装订费
+    basis: 册
+    unit_price: "25.00"
+    note: 按装订成的册计

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.idea/
+
+# 本地配置（含真实 api_key），不要提交、不要外传
+config.yaml
+config.local.yaml
+
+# 运行时决策日志
+logs/

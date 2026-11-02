@@ -1,0 +1,16 @@
+[project]
+name = "print-shop-agent"
+version = "1.1.0"
+description = "打印店自然语言接单 Agent：自然语言 -> 可核对的报价单"
+readme = "README.md"
+requires-python = ">=3.9"
+
+# YAML 价目表解析（核心依赖）；LangGraph 编排是可选依赖，没装时 CLI 自动回退顺序调用
+dependencies = ["pyyaml>=6"]
+
+[project.optional-dependencies]
+graph = ["langgraph>=1.0"]
+dev = ["pytest>=8"]
+
+[tool.uv]
+default-groups = ["dev"]

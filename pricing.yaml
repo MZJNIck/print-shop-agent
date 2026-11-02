@@ -1,0 +1,21 @@
+# 打印店价目表
+# 改价：改 unit_price，并把 version 改成新日期（报价单会回显版本）
+version: "2026-10-30"
+currency: CNY
+
+items:
+  typeset:
+    label: 排版费
+    basis: 源页面
+    unit_price: "3.00"
+    note: 需要排版的原始页面才收费，同一源页只计一次
+  print:
+    label: 打印费
+    basis: 实际打印页
+    unit_price: "0.50"
+    note: 源页面 × 每页打印份数
+  bind:
+    label: 装订费
+    basis: 册
+    unit_price: "20.00"
+    note: 按装订成的册计
