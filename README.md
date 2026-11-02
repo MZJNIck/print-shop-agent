@@ -39,17 +39,13 @@ uv pip install -e ".[graph,dev]"
 | API key / 模型 / 价目路径 / 排版口径 | `config.yaml` | 直接编辑，保存后重跑 |
 | 价格 | `pricing.yaml` | 改 `unit_price`，同时改 `version`（报价单会印版本） |
 
-> 仓库里不含 `config.yaml`（它可能含真实 key，已被 `.gitignore` 排除）。clone 后直接跑会用默认配置（离线规则）；要接模型，在项目根新建 `config.yaml`：
+> 仓库里不含 `config.yaml`（它可能含真实 key，已被 `.gitignore` 排除），但带了模板 `config.template.yaml`。clone 后先复制一份：
 
-```yaml
-deepseek:
-  api_key: "sk-..."
-  model: "deepseek-flash"
-  base_url: "https://api.deepseek.com"
-pricing:
-  file: "pricing.yaml"
-typeset_default: "none"
+```bash
+copy config.template.yaml config.yaml
 ```
+
+再按需改 `api_key` 即可。不复制也能跑（默认配置、离线规则）。
 
 优先级：**命令行 > 环境变量 > config.yaml**。例如 `--api-key sk-...` 覆盖文件里的 key。
 
@@ -103,11 +99,12 @@ typeset_default: "none"
 ## 目录
 
 ```
-printshop/     源码
-tests/         测试（101 条）
-config.yaml    运行配置（含你的 key，不要外传）
-pricing.yaml   价目表
-logs/          决策日志（--no-log 可关）
+printshop/            源码
+tests/                测试（108 条）
+config.template.yaml  运行配置模板（入库，key 为空）
+config.yaml           本地配置（含你的 key，不入库）
+pricing.yaml          价目表
+logs/                 决策日志（--no-log 可关）
 ```
 
 详细代码走读见 [CODE_WALKTHROUGH.md](CODE_WALKTHROUGH.md)。
